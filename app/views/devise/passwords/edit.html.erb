@@ -1,25 +1,80 @@
-<h2>Change your password</h2>
+<div class="min-h-screen bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        Reset Password
+      </h1>
+      <p class="text-lg text-base-content/70 mt-2">Enter your new password below</p>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+    <!-- Card -->
+    <div class="card bg-base-100 shadow-2xl">
+      <div class="card-body p-8">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "space-y-5" }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+          <!-- New Password -->
+          <div class="form-control w-full">
+            <label class="block mb-2">
+              <span class="label-text font-medium">New Password <span class="text-error">*</span></span>
+              <% if @minimum_password_length %>
+                <span class="label-text-alt text-base-content/50 ml-2"><%= @minimum_password_length %> chars min</span>
+              <% end %>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "••••••••", required: true %>
+            </div>
+          </div>
+
+          <!-- Confirm New Password -->
+          <div class="form-control w-full">
+            <label class="block mb-2">
+              <span class="label-text font-medium">Confirm New Password <span class="text-error">*</span></span>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "••••••••", required: true %>
+            </div>
+          </div>
+
+          <!-- Info Alert -->
+          <div class="alert alert-info">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-sm">Make sure to use a strong, unique password you haven't used before.</span>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-control mt-6">
+            <%= f.submit "Change My Password", class: "btn btn-primary btn-lg w-full" %>
+          </div>
+        <% end %>
+
+        <!-- Divider -->
+        <div class="divider my-6">Need help?</div>
+
+        <!-- Links -->
+        <div class="text-center">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-6 text-sm text-base-content/60">
+      <p>After changing your password, you'll be signed in automatically</p>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

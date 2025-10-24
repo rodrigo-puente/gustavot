@@ -1,43 +1,124 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="min-h-screen bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-2xl">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        Edit Profile
+      </h1>
+      <p class="text-lg text-base-content/70 mt-2">Update your account information</p>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <!-- Card -->
+    <div class="card bg-base-100 shadow-2xl">
+      <div class="card-body p-8">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-5" }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <!-- Email -->
+          <div class="form-control w-full">
+            <label class="block mb-2">
+              <span class="label-text font-medium">Email Address <span class="text-error">*</span></span>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                </svg>
+              </div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "john@example.com" %>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div class="label">
+                <span class="label-text-alt text-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></span>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="divider">Change Password (optional)</div>
+
+          <!-- Password Fields -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="form-control w-full">
+              <label class="block mb-2">
+                <span class="label-text font-medium">New Password</span>
+                <span class="label-text-alt text-base-content/50 ml-2">Leave blank to keep current</span>
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "••••••••" %>
+              </div>
+              <% if @minimum_password_length %>
+                <div class="label">
+                  <span class="label-text-alt text-base-content/50"><%= @minimum_password_length %> characters minimum</span>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="form-control w-full">
+              <label class="block mb-2">
+                <span class="label-text font-medium">Confirm New Password</span>
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "••••••••" %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Password (required for changes) -->
+          <div class="form-control w-full">
+            <label class="block mb-2">
+              <span class="label-text font-medium">Current Password <span class="text-error">*</span></span>
+              <span class="label-text-alt text-base-content/50 ml-2">Required to confirm changes</span>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                </svg>
+              </div>
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "••••••••", required: true %>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-control mt-8">
+            <%= f.submit "Update Profile", class: "btn btn-primary btn-lg w-full" %>
+          </div>
+        <% end %>
+
+        <!-- Divider -->
+        <div class="divider my-6">Account Actions</div>
+
+        <!-- Danger Zone -->
+        <div class="alert alert-warning">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <div class="flex-1">
+            <h3 class="font-bold">Danger Zone</h3>
+            <p class="text-sm">Once you delete your account, there is no going back.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-4">
+          <%= button_to "Cancel My Account",
+              registration_path(resource_name),
+              data: { confirm: "Are you sure? This action cannot be undone.", turbo_confirm: "Are you sure? This action cannot be undone." },
+              method: :delete,
+              class: "btn btn-error btn-outline flex-1" %>
+
+          <%= link_to "Back", :back, class: "btn btn-ghost flex-1" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>

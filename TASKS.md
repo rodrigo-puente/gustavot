@@ -41,14 +41,14 @@ Rails 8 includes Hotwire by default. No extra setup needed!
 ## PHASE 1: Foundation & Basic Authentication
 
 ### 1.1 Project Setup
-- [ ] **Task**: Initialize Rails 8 app with PostgreSQL
+- [x] **Task**: Initialize Rails 8 app with PostgreSQL
   - Run: `rails new gustavot --database=postgresql --css=tailwind`
   - Create database
   - **Browser Test**: Visit `localhost:3000` � see Rails welcome page
   - **Tests**: None needed yet
 
 ### 1.2 Install DaisyUI
-- [ ] **Task**: Add DaisyUI to Tailwind
+- [x] **Task**: Add DaisyUI to Tailwind
   - Install via npm/yarn
   - Configure `tailwind.config.js`
   - Create test page with DaisyUI button
@@ -56,7 +56,7 @@ Rails 8 includes Hotwire by default. No extra setup needed!
   - **Tests**: None needed
 
 ### 1.3 Install and Configure Devise
-- [ ] **Task**: Basic Devise setup
+- [x] **Task**: Basic Devise setup
   - Install Devise gem
   - Run `rails generate devise:install`
   - Generate User model: `rails generate devise User`
@@ -66,7 +66,7 @@ Rails 8 includes Hotwire by default. No extra setup needed!
   - **Tests**: User model test (validates presence)
 
 ### 1.4 Customize Registration Form
-- [ ] **Task**: Add all user fields to registration
+- [x] **Task**: Add all user fields to registration
   - Migration: Add `date_of_birth`, `phone_number`, `country_code` to users
   - Update strong parameters in `ApplicationController`
   - Generate Devise views: `rails generate devise:views`

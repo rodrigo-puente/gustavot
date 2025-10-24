@@ -20,6 +20,10 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 # Flexible authentication solution for Rails [https://github.com/heartcombo/devise]
 gem "devise"
+# Country selection with phone codes [https://github.com/countries/country_select]
+gem "country_select"
+# ISO country and subdivision data [https://github.com/countries/countries]
+gem "countries"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
