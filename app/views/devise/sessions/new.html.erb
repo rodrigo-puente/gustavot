@@ -1,0 +1,81 @@
+<div class="min-h-screen bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        Welcome Back
+      </h1>
+      <p class="text-lg text-base-content/70 mt-2">Sign in to your account</p>
+    </div>
+
+    <!-- Card -->
+    <div class="card bg-base-100 shadow-2xl">
+      <div class="card-body p-8">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-5" }) do |f| %>
+          <!-- Email -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-medium">Email Address</span>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                </svg>
+              </div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "john@example.com" %>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text font-medium">Password</span>
+              <%- if devise_mapping.recoverable? %>
+                <%= link_to "Forgot password?", new_password_path(resource_name), class: "label-text-alt link link-hover link-primary" %>
+              <% end %>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered focus:input-primary transition-all pl-10 w-full", placeholder: "••••••••" %>
+            </div>
+          </div>
+
+          <!-- Remember Me -->
+          <% if devise_mapping.rememberable? %>
+            <div class="form-control">
+              <label class="label cursor-pointer justify-start gap-3">
+                <%= f.check_box :remember_me, class: "checkbox checkbox-primary" %>
+                <span class="label-text">Remember me for 2 weeks</span>
+              </label>
+            </div>
+          <% end %>
+
+          <!-- Submit Button -->
+          <div class="form-control mt-6">
+            <%= f.submit "Sign In", class: "btn btn-primary btn-lg w-full" %>
+          </div>
+        <% end %>
+
+        <!-- Divider -->
+        <div class="divider my-6">Don't have an account?</div>
+
+        <!-- Links -->
+        <div class="text-center">
+          <%- if devise_mapping.registerable? %>
+            <%= link_to "Create Account", new_registration_path(resource_name), class: "btn btn-outline btn-wide" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-6 text-sm text-base-content/60">
+      <p>Secure login protected by industry-standard encryption</p>
+    </div>
+  </div>
+</div>
