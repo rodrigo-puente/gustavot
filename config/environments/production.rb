@@ -4,6 +4,9 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Explicitly use SECRET_KEY_BASE from environment if available
+  # Debug: Log if SECRET_KEY_BASE is present
+  puts "🔍 DEBUG: SECRET_KEY_BASE present: #{ENV["SECRET_KEY_BASE"].present?}"
+  puts "🔍 DEBUG: SECRET_KEY_BASE length: #{ENV["SECRET_KEY_BASE"]&.length || 0}"
   config.secret_key_base = ENV["SECRET_KEY_BASE"] if ENV["SECRET_KEY_BASE"].present?
 
   # Code is not reloaded between requests.
